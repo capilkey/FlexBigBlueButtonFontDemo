@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   width="100%" height="100%"
+			   creationComplete="onCreationComplete()">
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		
+		@font-face {
+			src: 		url("bbb-icons-11-3-2016.ttf"); 
+			fontFamily:	BBBIcons; 
+			fontStyle:	normal; 
+			fontWeight:	normal; 
+			embedAsCFF:	true;
+		}
+		
+		.icon {
+			fontFamily: BBBIcons;
+			fontSize: 80;
+			verticalAlign: middle;
+			textAlign: center;
+		}
+		
+		.skinnableTestStyle {
+			fontFamily:	BBBIcons;
+			fontSize: 80;
+			skinClass: ClassReference("LabelSkin");
+			text: "\ue900";
+		}
+		
+		.menuButtonStyle
+		{
+			backgroundColor         : blue;
+			selectedBackgroundColor : grey;
+			color                   : white;
+			fontSize				: 14;
+			iconSize				: 20;
+			iconColor				: white;
+			iconFont				: BBBIcons;
+			text: "\ue900";
+			skinClass               : ClassReference("MenuButtonSkin");
+		}
+		
+		.menuButtonStyle2
+		{
+			backgroundColor         : blue;
+			selectedBackgroundColor : grey;
+			color                   : white;
+			fontSize				: 20;
+			fontFamily				: BBBIcons;
+		}
+	</fx:Style>
+	
+	<fx:Script>
+		<![CDATA[
+			import spark.components.Button;
+			import spark.components.HGroup;
+			import spark.components.Label;
+			import spark.components.supportClasses.SkinnableComponent;
+			private var icons:Array = [
+				"\ue900", "\ue901", "\ue902", "\ue903", "\ue904", "\ue905", "\ue906", "\ue907", "\ue908", "\ue909", "\ue90a", "\ue90b", "\ue90c", "\ue90d", "\ue90e", "\ue90f",
+				"\ue910", "\ue911", "\ue912", "\ue913", "\ue914", "\ue915", "\ue916", "\ue917", "\ue918", "\ue919", "\ue91a", "\ue91b", "\ue91c", "\ue91d", "\ue91e", "\ue91f", 
+				"\ue920", "\ue921", "\ue922", "\ue923", "\ue924", "\ue925", "\ue926", "\ue927", "\ue928", "\ue929", "\ue92a", "\ue92b", "\ue92c", "\ue92d", "\ue92e", "\ue92f", 
+				"\ue930", "\ue931", "\ue932", "\ue933", "\ue934", "\ue935", "\ue936", "\ue937", "\ue938", "\ue939", "\ue93a", "\ue93b", "\ue93c", "\ue93d", "\ue93e", "\ue93f",
+				"\u1f554"
+			];
+			private var chars:Array = [
+				"e900", "e901", "e902", "e903", "e904", "e905", "e906", "e907", "e908", "e909", "e90a", "e90b", "e90c", "e90d", "e90e", "e90f",
+				"e910", "e911", "e912", "e913", "e914", "e915", "e916", "e917", "e918", "e919", "e91a", "e91b", "e91c", "e91d", "e91e", "e91f", 
+				"e920", "e921", "e922", "e923", "e924", "e925", "e926", "e927", "e928", "e929", "e92a", "e92b", "e92c", "e92d", "e92e", "e92f",
+				"e930", "e931", "e932", "e933", "e934", "e935", "e936", "e937", "e938", "e939", "e93a", "e93b", "e93c", "e93d", "e93e", "e93f",
+				"1f554"
+				];
+			
+			private function onCreationComplete():void {
+				var hgroup:HGroup = new HGroup();
+				var vgroup:VGroup, icon:Label, label:Label;
+				
+				var skinnableComp:SkinnableComponent = new SkinnableComponent();
+				skinnableComp.styleName = "skinnableTestStyle";
+				skinnableComp.width = 50;
+				skinnableComp.height = 50;
+				container.addElement(skinnableComp);
+				
+				var menuButton:Button = new Button();
+				menuButton.styleName = "menuButtonStyle";
+				//skinnableComp.width = 50;
+				//skinnableComp.height = 50;
+				menuButton.label = "Test";
+				container.addElement(menuButton);
+				
+				var menuButton:Button = new Button();
+				menuButton.styleName = "menuButtonStyle2";
+				//skinnableComp.width = 50;
+				//skinnableComp.height = 50;
+				menuButton.label = "\ue900";
+				container.addElement(menuButton);
+				
+				for (var i:int=0; i<chars.length; i++) {
+					if (i%8==0) {
+						container.addElement(hgroup);
+						hgroup = new HGroup();
+						hgroup.gap = 15;
+					}
+					
+					vgroup = new VGroup();
+					vgroup.horizontalAlign = "center";
+					
+					icon = new Label();
+					icon.styleName = "icon";
+					icon.text = icons[i];
+					vgroup.addElement(icon);
+					
+					label = new Label();
+					label.text = chars[i];
+					vgroup.addElement(label);
+					
+					hgroup.addElement(vgroup);
+				}
+				
+				container.addElement(hgroup);
+			}
+		]]>
+	</fx:Script>
+	<s:Scroller width="100%" height="100%">
+
+	<s:VGroup id="container" width="100%" height="100%" horizontalAlign="center" gap="15">
+		
+	</s:VGroup>
+		
+	</s:Scroller>
+</s:Application>
